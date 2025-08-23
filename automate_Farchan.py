@@ -45,19 +45,21 @@ def preprocess_data(df):
 # Blok ini hanya akan berjalan jika file ini dieksekusi secara langsung
 # Berguna untuk melakukan tes cepat pada fungsi di atas
 if __name__ == '__main__':
-    # Muat data mentah (sesuaikan path jika perlu)
+    # Tentukan path input dan output yang benar
+    input_path = 'namadataset_raw/train.csv'
+    output_folder = 'titanic_preprocessing'
+    output_path = os.path.join(output_folder, 'train_clean.csv')
+    
+    # Buat folder output jika belum ada
+    os.makedirs(output_folder, exist_ok=True)
+
     try:
-        raw_data = pd.read_csv('/content/dataset_ekstrak/train.csv') # Corrected path
-
-        # Panggil fungsi preprocessing
+        raw_data = pd.read_csv(input_path)
         clean_data = preprocess_data(raw_data)
-
-        # Tampilkan hasil untuk verifikasi
-        print("\nData setelah preprocessing:")
-        print(clean_data.head())
-
-        print("\nInformasi Dataframe setelah preprocessing:")
-        clean_data.info()
+        
+        # Simpan dataframe yang sudah bersih ke file CSV
+        clean_data.to_csv(output_path, index=False)
+        print(f"Data bersih berhasil disimpan di: {output_path}")
 
     except FileNotFoundError:
-        print("Error: File 'train.csv' tidak ditemukan. Pastikan path file sudah benar.") # Corrected print statement
+        print(f"Error: File tidak ditemukan di {input_path}")
