@@ -1,6 +1,7 @@
 # Import library yang diperlukan
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+import os
 
 def preprocess_data(df):
 
