@@ -30,7 +30,7 @@ jobs:
 
       # 4. Menjalankan skrip preprocessing
       - name: Run data preprocessing script
-        run: python preprocessing/automate_Farchan.py # Ganti dengan nama file Anda
+        run: python automate_Farchan.py # <-- INI YANG BENAR # Ganti dengan nama file Anda
 
       # 5. Mengunggah hasil preprocessing sebagai artifact
       - name: Upload processed dataset
