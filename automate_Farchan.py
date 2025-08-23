@@ -47,7 +47,7 @@ def preprocess_data(df):
 # Berguna untuk melakukan tes cepat pada fungsi di atas
 if __name__ == '__main__':
     # Tentukan path input dan output yang benar
-    input_path = 'namadataset_raw/train.csv'
+    input_path = 'titanic_raw/train.csv'
     output_folder = 'titanic_preprocessing'
     output_path = os.path.join(output_folder, 'train_clean.csv')
     
