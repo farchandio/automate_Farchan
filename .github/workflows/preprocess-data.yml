@@ -1,0 +1,40 @@
+name: Automatic Data Preprocessing
+
+# Trigger: Workflow ini berjalan setiap kali ada push ke branch 'main'
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # Memungkinkan trigger manual dari tab Actions
+
+jobs:
+  preprocess:
+    # Menjalankan di server virtual Ubuntu terbaru
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Mengunduh kode dari repository Anda ke server
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Menyiapkan lingkungan Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' # Anda bisa ganti versi Python
+
+      # 3. Menginstal library yang dibutuhkan dari requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4. Menjalankan skrip preprocessing
+      - name: Run data preprocessing script
+        run: python preprocessing/automate_Farchan.py # Ganti dengan nama file Anda
+
+      # 5. Mengunggah hasil preprocessing sebagai artifact
+      - name: Upload processed dataset
+        uses: actions/upload-artifact@v4
+        with:
+          name: processed-data # Nama artifact yang akan muncul
+          path: namadataset_preprocessing/train_clean.csv # Path ke file hasil
