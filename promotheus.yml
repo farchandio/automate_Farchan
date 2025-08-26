@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s # Atur seberapa sering mengambil metrik
+
+scrape_configs:
+  - job_name: "ml_model_monitoring"
+    static_configs:
+      - targets: ["localhost:8000"] # Arahkan ke exporter kita yang berjalan di port 8000

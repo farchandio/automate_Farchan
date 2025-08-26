@@ -1,0 +1,8 @@
+name: Heart_Disease_Training_CI
+
+environment:
+  file: requirements.txt
+
+entry_points:
+  main:
+    command: "python modelling.py"
