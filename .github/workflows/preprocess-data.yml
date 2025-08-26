@@ -20,7 +20,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # Anda bisa ganti versi Python
+          python-version: '3.10'
 
       # 3. Menginstal library yang dibutuhkan dari requirements.txt
       - name: Install dependencies
@@ -30,11 +30,13 @@ jobs:
 
       # 4. Menjalankan skrip preprocessing
       - name: Run data preprocessing script
-        run: python automate_Farchan.py # <-- INI YANG BENAR # Ganti dengan nama file Anda
+        run: python automate_Farchan.py
 
       # 5. Mengunggah hasil preprocessing sebagai artifact
       - name: Upload processed dataset
         uses: actions/upload-artifact@v4
         with:
-          name: processed-data # Nama artifact yang akan muncul
-          path: namadataset_preprocessing/train_clean.csv # Path ke file hasil
+          # Nama artifact diubah agar lebih sesuai
+          name: heart-disease-preprocessed-data 
+          # Path diubah untuk mengunggah seluruh folder beserta isinya
+          path: namadataset_preprocessing/
