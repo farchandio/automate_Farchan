@@ -20,11 +20,15 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
-      
-      - name: Run MLflow Project to Train Model
-        # Perintah ini akan membuat folder mlruns dan file mlflow.db di direktori utama
-        run: mlflow run .
+      # Tambahkan langkah ini untuk debugging
+      - name: List all files in the repository
+        run: ls -R
 
+      # Langkah upload Anda
+      - name: Upload MLflow Results as Artifact
+        # ... (sisa kode) ...
+        run: mlflow run .
+            
       # Langkah Paling Penting untuk Diperiksa
       - name: Upload MLflow Results as Artifact
         uses: actions/upload-artifact@v4
