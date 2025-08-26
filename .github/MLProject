@@ -1,4 +1,4 @@
-name: Heart_Disease_Training_CI
+name: CI_Model_Training
 
 environment:
   file: requirements.txt

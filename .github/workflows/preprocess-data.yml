@@ -1,4 +1,4 @@
-name: CI for Model Training
+name: CI_Model_Training
 
 on:
   push:
