@@ -20,15 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
-      # Tambahkan langkah ini untuk debugging
-      - name: List all files in the repository
-        run: ls -R
-
-      # Langkah upload Anda
-      - name: Upload MLflow Results as Artifact
-        # ... (sisa kode) ...
+      
+      # LANGKAH UNTUK MENJALANKAN MODEL (DIPISAHKAN)
+      - name: Run MLflow Project to Train Model
         run: mlflow run .
-            
+
       # Langkah Paling Penting untuk Diperiksa
       - name: Upload MLflow Results as Artifact
         uses: actions/upload-artifact@v4
