@@ -1,0 +1,8 @@
+name: CI_Model_Training
+
+environment:
+  file: requirements.txt
+
+entry_points:
+  main:
+    command: "python modelling.py"
