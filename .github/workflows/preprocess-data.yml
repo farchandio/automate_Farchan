@@ -23,7 +23,7 @@ jobs:
       
       # Menjalankan mlflow sebagai modul python
       - name: Run MLflow Project to Train Model
-        run: python -m mlflow run .
+        run: python -m mlflow run . --env-manager local
 
       # Mengunggah artifact dari folder yang benar
       - name: Upload MLflow Results as Artifact

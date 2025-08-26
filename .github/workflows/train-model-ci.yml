@@ -21,7 +21,7 @@ jobs:
       
       # LANGKAH UNTUK MENJALANKAN MODEL (DIPISAHKAN)
       - name: Run MLflow Project to Train Model
-        run: python -m mlflow run . --no-conda
+        run: python -m mlflow run . --env-manager-local
 
       # Langkah Paling Penting untuk Diperiksa
       - name: Upload MLflow Results as Artifact
