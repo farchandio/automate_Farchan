@@ -25,12 +25,11 @@ jobs:
       - name: Run MLflow Project to Train Model
         run: mlflow run .
 
-      # Langkah Paling Penting untuk Diperiksa
+      # LANGKAH UNTUK MENGUNGGAH HASILNYA
       - name: Upload MLflow Results as Artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlflow-results-artifact
-          # Pastikan path ini benar. Tanda titik (.) berarti direktori saat ini.
           path: |
-            membangun_model/mlruns/
-            membangun_model/mlflow.db
+            mlruns  
+            mlflow.db
