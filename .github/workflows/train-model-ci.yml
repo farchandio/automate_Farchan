@@ -38,5 +38,5 @@ jobs:
           name: mlflow-results-artifact
           # Pastikan path ini benar. Tanda titik (.) berarti direktori saat ini.
           path: |
-            membangun_model/mlruns/
-            membangun_model/mlflow.db
+            membangun_model/titanic_preprocessing/mlruns/
+            membangun_model/titanic_preprocessing/mlflow.db
