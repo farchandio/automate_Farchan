@@ -29,7 +29,7 @@ jobs:
       - name: Upload MLflow Results as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: mlflow-results-artifact
-          path: |
-            mlruns  
-            mlflow.db
+         name: mlflow-results-artifact
+         path: |
+          membangun_model/mlruns/
+           membangun_model/mlflow.db
