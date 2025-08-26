@@ -1,0 +1,36 @@
+name: CI for Model Training
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  train_and_log:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Run MLflow Project to Train Model
+        # Perintah ini akan membuat folder mlruns dan file mlflow.db di direktori utama
+        run: mlflow run .
+
+      # Langkah Paling Penting untuk Diperiksa
+      - name: Upload MLflow Results as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-results-artifact
+          # Pastikan path ini benar. Tanda titik (.) berarti direktori saat ini.
+          path: |
+            mlruns/
+            mlflow.db
