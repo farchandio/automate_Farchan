@@ -1,4 +1,4 @@
-name: CI_Model_Training
+name: CI for Model Training
 
 on:
   push:
@@ -20,16 +20,23 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
-      
-      # Menjalankan mlflow sebagai modul python
+  
+      - name: Install MLflow
+        run: pip install mlflow
+  
       - name: Run MLflow Project to Train Model
         run: python -m mlflow run . --env-manager local
 
-      # Mengunggah artifact dari folder yang benar
+      # LANGKAH UNTUK MENJALANKAN MODEL (DIPISAHKAN)
+      - name: Run MLflow Project to Train Model
+        run: python -m mlflow run . --env-manager-local
+
+      # Langkah Paling Penting untuk Diperiksa
       - name: Upload MLflow Results as Artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlflow-results-artifact
+          # Pastikan path ini benar. Tanda titik (.) berarti direktori saat ini.
           path: |
             membangun_model/mlruns/
             membangun_model/mlflow.db
