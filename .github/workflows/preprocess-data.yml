@@ -1,42 +1,40 @@
-name: Automatic Data Preprocessing
+name: CI for Model Training
 
-# Trigger: Workflow ini berjalan setiap kali ada push ke branch 'main'
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: # Memungkinkan trigger manual dari tab Actions
+  workflow_dispatch:
 
 jobs:
-  preprocess:
-    # Menjalankan di server virtual Ubuntu terbaru
+  train_and_log:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Mengunduh kode dari repository Anda ke server
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Menyiapkan lingkungan Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      # 3. Menginstal library yang dibutuhkan dari requirements.txt
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
+      # Tambahkan langkah ini untuk debugging
+      - name: List all files in the repository
+        run: ls -R
 
-      # 4. Menjalankan skrip preprocessing
-      - name: Run data preprocessing script
-        run: python automate_Farchan.py
-
-      # 5. Mengunggah hasil preprocessing sebagai artifact
-      - name: Upload processed dataset
+      # Langkah upload Anda
+      - name: Upload MLflow Results as Artifact
+        # ... (sisa kode) ...
+        run: mlflow run .
+            
+      # Langkah Paling Penting untuk Diperiksa
+      - name: Upload MLflow Results as Artifact
         uses: actions/upload-artifact@v4
         with:
-          # Nama artifact diubah agar lebih sesuai
-          name: heart-disease-preprocessed-data 
-          # Path diubah untuk mengunggah seluruh folder beserta isinya
-          path: namadataset_preprocessing/
+          name: mlflow-results-artifact
+          # Pastikan path ini benar. Tanda titik (.) berarti direktori saat ini.
+          path: |
+            membangun_model/mlruns/
+            membangun_model/mlflow.db
