@@ -18,12 +18,10 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
       
       # LANGKAH UNTUK MENJALANKAN MODEL (DIPISAHKAN)
       - name: Run MLflow Project to Train Model
-        run: mlflow run .
+        run: python -m mlflow run . --no-conda
 
       # Langkah Paling Penting untuk Diperiksa
       - name: Upload MLflow Results as Artifact
